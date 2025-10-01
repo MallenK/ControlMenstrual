@@ -9,7 +9,10 @@
 <body>
 <header class="bar">
   <h1>Ciclo</h1>
-  <button id="btnAdd" aria-label="Añadir registro">＋</button>
+  <div class="hstack">
+    <button id="btnThree">3 meses</button>
+    <button id="btnAdd" aria-label="Añadir registro">＋</button>
+  </div>
 </header>
 
 <main class="container">
@@ -20,26 +23,72 @@
     <div><strong>Próxima regla:</strong> <span id="nextPeriod">—</span></div>
   </section>
 
-  <section aria-label="Calendario">
+  <section class="panel" aria-label="Calendario">
     <div class="calendar-head">
       <button id="prev">◀</button>
       <h2 id="monthLabel"></h2>
       <button id="next">▶</button>
     </div>
-    <div class="grid" id="calendar" role="grid" aria-label="Mes">
-      <!-- celdas dinámicas -->
-    </div>
+    <div id="calWrap" class="cal-wrap"><!-- 1 o 3 meses --></div>
     <legend class="legend">
       <span class="dot dot-period"></span> Regla
       <span class="dot dot-fertile"></span> Ventana fértil
       <span class="dot dot-ov"></span> Ovulación
     </legend>
   </section>
+
+  <section class="panel" aria-label="Próximas predicciones">
+    <h3>Próximas fechas</h3>
+    <div id="nextTable" class="table-like"></div>
+  </section>
+
+  <section class="panel" aria-label="Fases y consecuencias">
+    <div class="phases">
+      <article data-key="menstrual">
+        <header>
+          <h3>Fase menstrual</h3>
+          <div class="tags"><span class="tag">D1–5</span></div>
+          <button class="tiny edit-phase">Editar texto</button>
+        </header>
+        <p class="phase-text"></p>
+      </article>
+      <article data-key="folicular">
+        <header>
+          <h3>Fase folicular</h3>
+          <div class="tags"><span class="tag">D1–13</span></div>
+          <button class="tiny edit-phase">Editar texto</button>
+        </header>
+        <p class="phase-text"></p>
+      </article>
+      <article data-key="ovulacion">
+        <header>
+          <h3>Ovulación</h3>
+          <div class="tags"><span class="tag">~D14</span></div>
+          <button class="tiny edit-phase">Editar texto</button>
+        </header>
+        <p class="phase-text"></p>
+      </article>
+      <article data-key="lutea">
+        <header>
+          <h3>Fase lútea</h3>
+          <div class="tags"><span class="tag">D15–28</span></div>
+          <button class="tiny edit-phase">Editar texto</button>
+        </header>
+        <p class="phase-text"></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="panel" aria-label="Historial">
+    <h3>Historial de ciclos</h3>
+    <div id="history"></div>
+  </section>
 </main>
 
 <dialog id="dlg">
   <form id="formEntry" method="dialog">
-    <h3>Nuevo registro</h3>
+    <h3 id="dlgTitle">Nuevo registro</h3>
+    <input type="hidden" id="editIndex">
     <label>Inicio regla
       <input type="date" id="start" required>
     </label>
@@ -57,7 +106,7 @@
       </select>
     </label>
     <label>Estado de ánimo
-      <input id="mood" placeholder="p. ej., irritable, triste">
+      <input id="mood" placeholder="p. ej., irritable, estable">
     </label>
     <label>Notas
       <textarea id="notes" rows="3"></textarea>
@@ -68,12 +117,6 @@
     </menu>
   </form>
 </dialog>
-
-<footer class="footer">
-  <button id="btnExport">Exportar JSON</button>
-  <button id="btnImport">Importar JSON</button>
-  <button id="btnSettings">Ajustes</button>
-</footer>
 
 <dialog id="dlgSettings">
   <form method="dialog">
@@ -87,6 +130,24 @@
     </menu>
   </form>
 </dialog>
+
+<dialog id="dlgPhase">
+  <form method="dialog">
+    <h3>Editar texto de fase</h3>
+    <input type="hidden" id="phaseKey">
+    <textarea id="phaseBody" rows="8"></textarea>
+    <menu>
+      <button value="cancel">Cancelar</button>
+      <button id="savePhase" value="default">Guardar</button>
+    </menu>
+  </form>
+</dialog>
+
+<footer class="footer">
+  <button id="btnExport">Exportar JSON</button>
+  <button id="btnImport">Importar JSON</button>
+  <button id="btnSettings">Ajustes</button>
+</footer>
 
 <script src="app.js"></script>
 </body>
