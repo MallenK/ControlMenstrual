@@ -5,12 +5,17 @@
 }
 *{box-sizing:border-box} body{margin:0;font-family:system-ui,Segoe UI,Roboto;background:var(--bg);color:var(--fg)}
 .bar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)}
-.bar h1{margin:0;font-size:18px} .bar button{background:var(--accent);border:0;color:#000;padding:6px 10px;border-radius:8px;cursor:pointer}
-.container{max-width:900px;margin:0 auto;padding:16px}
+.bar h1{margin:0;font-size:18px} .hstack{display:flex;gap:8px}
+.bar button{background:var(--accent);border:0;color:#000;padding:6px 10px;border-radius:8px;cursor:pointer}
+.container{max-width:1000px;margin:0 auto;padding:16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:14px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
 .stats div{background:var(--card);padding:12px;border:1px solid var(--line);border-radius:12px}
 .calendar-head{display:flex;gap:8px;align-items:center;justify-content:center;margin:8px 0}
 .calendar-head h2{margin:0;font-weight:600}
+.cal-wrap{display:grid;grid-template-columns:1fr;gap:12px}
+.month{border:1px solid var(--line);border-radius:12px;padding:8px}
+.month h4{margin:4px 4px 8px 4px;color:var(--muted);font-weight:600}
 .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
 .cell{border:1px solid var(--line);border-radius:10px;min-height:84px;padding:6px;background:#0b1220;position:relative}
 .cell .d{font-size:12px;color:var(--muted)}
@@ -21,10 +26,22 @@
 .legend{display:flex;gap:14px;align-items:center;margin-top:8px;color:var(--muted);font-size:12px}
 .dot{display:inline-block;width:10px;height:10px;border-radius:999px;margin-right:6px;background:var(--line)}
 .dot-period{background:var(--period)} .dot-fertile{background:var(--fertile)} .dot-ov{background:var(--ov)}
-dialog{border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--fg);padding:16px}
+dialog{border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--fg);padding:16px;max-width:520px}
 label{display:flex;flex-direction:column;gap:4px;margin:6px 0}
 input,select,textarea{background:#0b1220;color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:8px}
 menu{display:flex;gap:8px;justify-content:flex-end;margin:12px 0 0 0;padding:0}
 .footer{display:flex;gap:8px;justify-content:center;padding:12px;border-top:1px solid var(--line);margin-top:16px}
 button{cursor:pointer}
-@media (max-width:720px){.stats{grid-template-columns:1fr 1fr}}
+.table-like{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.table-like .cellk{border:1px solid var(--line);border-radius:10px;padding:8px}
+.phases{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.phases article{border:1px solid var(--line);border-radius:12px;padding:10px;background:#0b1220}
+.phases header{display:flex;gap:8px;align-items:center;justify-content:space-between}
+.tags{display:flex;gap:6px} .tag{font-size:11px;background:var(--line);padding:2px 8px;border-radius:999px;color:var(--muted)}
+.tiny{background:transparent;border:1px solid var(--line);color:var(--fg);padding:4px 8px;border-radius:8px}
+.list{display:grid;gap:6px}
+.card{border:1px solid var(--line);border-radius:10px;padding:8px;background:#0b1220;display:flex;justify-content:space-between;align-items:center}
+.card small{color:var(--muted)}
+.actions{display:flex;gap:6px}
+@media (max-width:920px){.stats{grid-template-columns:1fr 1fr}.phases{grid-template-columns:1fr}.table-like{grid-template-columns:1fr}}
+@media (min-width:900px){.cal-wrap.three{grid-template-columns:repeat(3,1fr)}}
