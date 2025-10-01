@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ciclo — Seguimiento</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="bar">
+  <h1>Ciclo</h1>
+  <button id="btnAdd" aria-label="Añadir registro">＋</button>
+</header>
+
+<main class="container">
+  <section class="stats" aria-label="Resumen">
+    <div><strong>Promedio ciclo:</strong> <span id="avgCycle">—</span> d</div>
+    <div><strong>Duración regla:</strong> <span id="avgBleed">—</span> d</div>
+    <div><strong>Confianza:</strong> <span id="confidence">—</span></div>
+    <div><strong>Próxima regla:</strong> <span id="nextPeriod">—</span></div>
+  </section>
+
+  <section aria-label="Calendario">
+    <div class="calendar-head">
+      <button id="prev">◀</button>
+      <h2 id="monthLabel"></h2>
+      <button id="next">▶</button>
+    </div>
+    <div class="grid" id="calendar" role="grid" aria-label="Mes">
+      <!-- celdas dinámicas -->
+    </div>
+    <legend class="legend">
+      <span class="dot dot-period"></span> Regla
+      <span class="dot dot-fertile"></span> Ventana fértil
+      <span class="dot dot-ov"></span> Ovulación
+    </legend>
+  </section>
+</main>
+
+<dialog id="dlg">
+  <form id="formEntry" method="dialog">
+    <h3>Nuevo registro</h3>
+    <label>Inicio regla
+      <input type="date" id="start" required>
+    </label>
+    <label>Duración (días)
+      <input type="number" id="duration" min="1" max="10" value="5">
+    </label>
+    <label>Flujo
+      <select id="flow">
+        <option>ligero</option><option selected>medio</option><option>alto</option>
+      </select>
+    </label>
+    <label>Dolor
+      <select id="pain">
+        <option>ninguno</option><option>leve</option><option>moderado</option><option>fuerte</option>
+      </select>
+    </label>
+    <label>Estado de ánimo
+      <input id="mood" placeholder="p. ej., irritable, triste">
+    </label>
+    <label>Notas
+      <textarea id="notes" rows="3"></textarea>
+    </label>
+    <menu>
+      <button value="cancel">Cancelar</button>
+      <button id="save" value="default">Guardar</button>
+    </menu>
+  </form>
+</dialog>
+
+<footer class="footer">
+  <button id="btnExport">Exportar JSON</button>
+  <button id="btnImport">Importar JSON</button>
+  <button id="btnSettings">Ajustes</button>
+</footer>
+
+<dialog id="dlgSettings">
+  <form method="dialog">
+    <h3>Ajustes</h3>
+    <label>Días fase lútea
+      <input type="number" id="lutealDays" min="10" max="17" value="14">
+    </label>
+    <menu>
+      <button value="cancel">Cerrar</button>
+      <button id="saveSettings" value="default">Guardar</button>
+    </menu>
+  </form>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
